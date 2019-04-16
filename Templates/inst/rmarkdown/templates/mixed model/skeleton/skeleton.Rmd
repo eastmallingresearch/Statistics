@@ -1,0 +1,54 @@
+---
+title: "Linear mixed model"
+author: "Your Name"
+date: "The Date"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load required libraries
+```{r, echo=T,message=F,warning=F}
+library(data.table)
+library(tidyverse)
+library(nlme)
+```
+
+#### Custom functions
+```{r, echo=T }
+
+```
+
+## Example data
+```{r}
+dat <- data.table(
+ field=c(rep("A",30),rep("B",30),rep("C",30)),
+  block=as.factor(1:15),
+  treatment = as.factor(c("hand","mangle","spinner")),
+  captured = sapply(1:90,function(i)rnorm(1,(i%%3+1)*6,(i%%3+0.5)))
+)
+```
+
+## Load data
+```{r}
+
+```
+
+## Explorartory analysis
+
+### Summary statistics
+```{r}
+
+```
+
+### Plots
+```{r}
+
+```
+
+## Analysis
+```{r}
+
+```

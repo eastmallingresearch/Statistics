@@ -1,0 +1,3 @@
+path <- function (...){
+  paste(...,sep="/")
+}

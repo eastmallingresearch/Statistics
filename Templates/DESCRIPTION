@@ -1,0 +1,10 @@
+Package: Templates
+Title: Statistical analysis templates
+Description: A repository for statistical templates
+Version: 1.0
+License: GNU
+Author: Greg Deakin <greg.deakin@emr.ac.uk>
+Maintainer: Greg Deakin <greg.deakin@emr.ac.uk>
+Imports:
+  usethis
+RoxygenNote: 6.0.1

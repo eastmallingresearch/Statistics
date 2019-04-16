@@ -1,0 +1,48 @@
+---
+title: "Template Title"
+author: "Your Name"
+date: "The Date"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load required libraries
+```{r, echo=T,message=F,warning=F}
+library(data.table)
+library(tidyverse)
+```
+
+#### Custom functions
+```{r, echo=T }
+
+```
+
+## Example data
+```{r}
+#
+```
+
+## Load data
+```{r}
+
+```
+
+## Explorartory analysis
+
+### Summary statistics
+```{r}
+
+```
+
+### Plots
+```{r}
+
+```
+
+## Analysis
+```{r}
+
+```

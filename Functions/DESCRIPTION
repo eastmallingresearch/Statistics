@@ -1,0 +1,10 @@
+Package: Functions
+Title: Functions
+Description: Does stats stuff
+Version: 1.0
+License: GNU
+Author: Greg Deakin <greg.deakin@emr.ac.uk>
+Maintainer: Greg Deakin <greg.deakin@emr.ac.uk>
+Imports:
+  data.table
+RoxygenNote: 6.0.1

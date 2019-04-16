@@ -1,0 +1,100 @@
+---
+title: "Binomial glm"
+author: "Greg Deakin"
+date: "The Date"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load required libraries
+```{r, echo=T,message=F,warning=F}
+library(data.table)
+library(tidyverse)
+library(statfuncs)
+library(emmeans)
+```
+
+#### Custom functions
+```{r, echo=T }
+```
+
+## Example data
+```{r}
+dat <- data.table(
+  block=as.factor(1:25),
+  treatment = as.factor(c("hand","mangle","spinner")),
+  survived = sapply(1:75,function(i)rbinom(1,20,0.9/(i%%3+1))),
+  total=20
+)
+```
+
+## Load data
+```{r}
+
+```
+
+## Explorartory analysis
+
+### Check for balance
+```{r}
+dat[,(.N),by=treatment]
+dat[,(.N),by=block]
+```
+
+### Summary statistics
+```{r}
+dat[,as.list(summary(survived/total*100)),by=treatment]
+```
+
+### Plots
+```{r}
+g <- ggplot(dat,aes(x=treatment, y=(survived/total*100)))+ylab("% survived")
+g + geom_boxplot()
+```
+
+## Analysis
+```{r}
+model <- glm(survived/total~block+treatment,
+         data=dat,
+         family=binomial(link="logit"),
+         weights=total)
+```
+### model summary
+```{r}
+glm.sum(model)
+```
+### model coefficients
+```{r}
+summary(model)
+```
+### Correction for overdispersion
+```{r}
+# model <- update(model,family=quasibinomial)
+```
+### Anova
+```{r}
+anova(model,test="Chisq")
+```
+### post hoc tests
+```{r}
+emmeans(model,pairwise~treatment)
+```
+### Alternative analysis with brglm2
+This is sometimes required if there is a factror equal to 0 or 1
+There is an alternative FB/XX method for calculating p values fom the deviance - this to be added here  
+#### Load required libraries
+```{r, echo=T,message=F,warning=F}
+library(brglm2)
+```
+#### update model
+```{r}
+model <- update(model,method="brglmFit")
+```
+
+### post hoc tests
+```{r}
+emmeans(model,pairwise~treatment)
+```

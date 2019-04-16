@@ -1,0 +1,98 @@
+---
+title: "Poisson glm"
+author: "Greg Deakin"
+date: "The Date"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load required libraries
+```{r, echo=T,message=F,warning=F}
+library(data.table)
+library(tidyverse)
+library(statfuncs)
+library(emmeans)
+```
+
+#### Custom functions
+```{r, echo=T }
+```
+
+## Example data
+```{r}
+dat <- data.table(
+  block=as.factor(1:25),
+  treatment = as.factor(c("hand","mangle","spinner")),
+  captured = sapply(1:75,function(i)rpois(1,(i%%3+1)*6))
+)
+```
+
+## Load data
+```{r}
+
+```
+
+## Explorartory analysis
+
+### Check for balance
+```{r}
+dat[,(.N),by=treatment]
+dat[,(.N),by=block]
+```
+
+### Summary statistics
+```{r}
+dat[,as.list(summary(captured)),by=treatment]
+```
+
+### Plots
+```{r}
+g <- ggplot(dat,aes(x=treatment, y=captured))
+g + geom_boxplot()
+```
+
+## Analysis
+```{r}
+model <- glm(captured~block+treatment,
+         data=dat,
+         family=poisson(link="log"))
+```
+### model summary
+```{r}
+glm.sum(model)
+```
+### model coefficients
+```{r}
+summary(model)
+```
+### Correction for overdispersion
+```{r}
+# model <- update(model,family=quasibinomial)
+```
+### Anova
+```{r}
+anova(model,test="Chisq")
+```
+### post hoc tests
+```{r}
+emmeans(model,pairwise~treatment)
+```
+### Alternative analysis with brglm2
+This is sometimes required if there is a factor equal to 0
+There is an alternative FB/XX method for calculating p values fom the deviance - this to be added here  
+#### Load required libraries
+```{r, echo=T,message=F,warning=F}
+library(brglm2)
+```
+#### update model
+```{r}
+model <- update(model,method="brglmFit")
+```
+
+### post hoc tests
+```{r}
+emmeans(model,pairwise~treatment)
+```
