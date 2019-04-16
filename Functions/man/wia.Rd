@@ -17,3 +17,7 @@ wia(obs, sim)
 \description{
 wia calculates the Willmot index of agreement of simulated to observed data.
 }
+\examples{
+wia(1:10,1:10)
+wia(1:10,2:11)
+}

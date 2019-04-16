@@ -7,11 +7,10 @@
 ols_plot_resid_dense(model)
 }
 \arguments{
-\item{model}{an lm model 
+\item{model}{an lm model
 scores.}
-}
-\value{
-A ggplot density plot.
+
+\item{return}{A ggplot density plot.}
 }
 \description{
 ols_plot_resid_dense plots a residual density plot.

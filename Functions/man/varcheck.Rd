@@ -8,8 +8,16 @@ varcheck(DT, value, group)
 }
 \arguments{
 \item{DT}{data as data.table (or data frame) object}
+
+\item{value}{dependent variable column of DT}
+
+\item{group}{independent variable (factor) column of DT}
 }
 \description{
 Simple function to check within and between group variance
 Equivalent to Mean Sq (and F) values from one-way anova
+}
+\examples{
+DT <- data.table(dv=c(rnorm(100,10,2),rnorm(100,20,2)),iv=as.factor(c(rep("A",100),rep("B",100))))
+varcheck(DT,"dv","iv")
 }

@@ -1,4 +1,5 @@
-ols_plot_resid_stand_fit <- 
+#' @export
+ols_plot_resid_stand_fit <-
 function(x,id.n=3,labels.id = names(residuals(x)), sub.caption=NULL,...) {
     dropInf <- function(x, h) {
         if (any(isInf <- h >= 1)) {
@@ -32,7 +33,7 @@ function(x,id.n=3,labels.id = names(residuals(x)), sub.caption=NULL,...) {
     if (id.n > 0L) {
         if (is.null(labels.id))
             labels.id <- paste(1L:n)
-		show.rs <- labels.id	
+		show.rs <- labels.id
 		show.rs[sort.list(abs(rs), decreasing = TRUE)[(id.n+1):length(show.rs)]] <- NA
     }
     if (is.null(sub.caption)) {
@@ -53,11 +54,11 @@ function(x,id.n=3,labels.id = names(residuals(x)), sub.caption=NULL,...) {
     ylim <- c(0, max(sqrtabsr, na.rm = TRUE))
     yl <- as.expression(substitute(sqrt(abs(YL)), list(YL = as.name(ylab23))))
     yhn0 <-  yh
-	
+
     ##plot
 	g <- ggplot(tibble(x=yhn0,y=sqrtabsr,label=show.rs), aes(x,y,label=label))
 	g <- g + labs(x=l.fit,y=yl,title="Scale-Location Plot",caption=sub.caption)
-	g <- g + geom_point() + geom_smooth(...) #geom_smooth(se=F,method = 'loess', formula = 'y ~ x') 
+	g <- g + geom_point() + geom_smooth(...) #geom_smooth(se=F,method = 'loess', formula = 'y ~ x')
  	g <- g + geom_label(na.rm=T)
 	#geom_text(nudge_y=(max(sqrtabsr) - min(sqrtabsr))/length(sqrtabsr),na.rm=T)
 	g

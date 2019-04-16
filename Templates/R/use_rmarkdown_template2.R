@@ -3,16 +3,16 @@
 #' Copy of the usethis function of the same name with added functionality
 #' Adds files and directories necessary to add a custom rmarkdown template to RStudio.
 #'
-#' @template_name The name as printed in the template menu.
-#' @template_dir	Name of the directory the template will live in within inst/rmarkdown/templates.
-#' @template_description	Sets the value of description in template.yml.
-#' @template_create_dir Sets the value of create_dir in template.yml.
-#' @default_template The default template to use as the basis for the new template
-#' @package The package containing the default template
+#' @param template_name The name as printed in the template menu.
+#' @param template_dir	Name of the directory the template will live in within inst/rmarkdown/templates.
+#' @param template_description	Sets the value of description in template.yml.
+#' @param template_create_dir Sets the value of create_dir in template.yml.
+#' @param default_template The default template to use as the basis for the new template
+#' @param package The package containing the default template
 #'
-#' @Example
+#' @example
 #' use_rmarkdown_template2(default_template="default.Rmd",package="Templates")
-
+#' @export
 use_rmarkdown_template2 <-
   function (template_name = "Template Name", template_dir = tolower(asciify(template_name)),
             template_description = "A description of the template",

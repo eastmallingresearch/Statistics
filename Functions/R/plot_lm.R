@@ -5,14 +5,14 @@
 #' This is (sort of) a copy of the stats plot.lm function,
 #' but with ggplot output. It's a work in progress...
 #'
-#' @param plots
-#' @param id.n
-#' @param labels.id
-#' @param caption
-#' @param arrange
-#' @param ...
+#' @param plots select plots 1-4 (hist,qqnorm,resid fit, std resid fit)
+#' @param id.n no idea
+#' @param labels.id plot labels
+#' @param caption Title
+#' @param arrange Arrange with gridArrange (T)
+#' @param ... Not implemented
 #' @param x an lm model object
-
+#' @export
 plot_lm <-
 
   function(

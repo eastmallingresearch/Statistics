@@ -1,5 +1,5 @@
 # https://ase.tufts.edu/gsc/gradresources/guidetomixedmodelsinr/mixed%20model%20guide.html
-
+#' @export
 od_check <- function(model) {
     ## number of variance parameters in an n-by-n variance-covariance matrix
     vpars <- function(m) {

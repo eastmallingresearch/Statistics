@@ -6,6 +6,15 @@
 \usage{
 glm.sum(m, dispersion = T)
 }
+\arguments{
+\item{m}{glm model}
+
+\item{dispersion}{numeric value for dispersion (not used)}
+}
 \description{
 Produces Genstat like summary information for a glm
+}
+\examples{
+DT <- data.table(dv=c(rnorm(100,10,2),rnorm(100,20,2)),iv=as.factor(c(rep("A",100),rep("B",100))))
+varcheck(DT,"dv","iv")
 }
